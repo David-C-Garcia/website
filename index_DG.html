@@ -1,17 +1,151 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David Garcia - Senior Research Scientist</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            scroll-behavior: smooth;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #1e272e;
+            width: 100%;
+            padding: 1rem 0.5rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .social-links {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            padding: 0.5rem 0;
+            margin: 0.5rem 0;
+        }
+        .social-links a img {
+            width: 25px;
+            height: 25px;
+            margin-right: 0.5rem;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        nav ul li {
+            margin: 0.3rem 0;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 0.8rem 1.2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 4px;
+            text-align: center;
+            display: block;
+        }
+        nav ul li a:hover {
+            background-color: #718093;
+        }
+        main {
+            padding: 4rem;
+            width: 75%;
+        }
+        section {
+            padding: 15rem 5% 2rem 5%;
+            background-color: white;
+            margin: 1rem auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            scroll-margin-top: 6rem;
+        }
+        section h2 {
+            color: #2f3542;
+            font-size: 2.5rem;
+            margin-top: -14rem;
+            text-align: center;
+            border-bottom: 3px solid #57606f;
+            padding-bottom: 1rem;
+        }
+        section p, section ul {
+            font-size: 1.2rem;
+            line-height: 2rem;
+            text-align: justify;
+        }
+        .icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            gap: 2.5rem;
+        }
+        .icon {
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .icon img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .icon a {
+            text-decoration: none;
+            color: #2f3542;
+            font-size: 1.4rem;
+            display: block;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 <body>
-
 <header>
     <h1>David Garcia</h1>
     <img src="portrait_DG.png" alt="Profile Picture">
-    <h3>Senior Research Scientist<br>DEVCOM CBC & Caltech</h3>
+    <h3 style="text-align: center; margin-top: 1rem; font-weight: normal;">Senior Research Scientist<br>DEVCOM CBC & Caltech</h3>
     <div class="social-links">
         <a href="https://www.linkedin.com/in/david-garcia-172602ba/" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
@@ -22,15 +156,7 @@
             Google Scholar
         </a>
     </div>
-    <nav>
-        <ul>
-            <li><a href="#biography">Biography</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
-        </ul>
-    </nav>
 </header>
-
 <main>
     <section id="biography">
         <h2>Biography</h2>
