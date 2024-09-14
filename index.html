@@ -337,7 +337,92 @@ window.onclick = function(event) {
             }
         }
     </style>
+    
+    <style>
+        /* General styles for responsive layout */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header, nav, main, section {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Adjusting button sizes and layout for responsiveness */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0.5rem;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.2rem;
+            text-align: center;
+            border-radius: 5px;
+            background-color: #1e272e;
+            color: white;
+            text-decoration: none;
+            width: 100%;
+            max-width: 300px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #718093;
+        }
+
+        @media (max-width: 768px) {
+            /* Make buttons scale properly */
+            .button-container a {
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+                width: 90%;
+                max-width: 100%;
+            }
+
+            .button-container {
+                padding: 0.3rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            section p, section ul {
+                font-size: 0.9rem;
+            }
+
+            .icons {
+                flex-direction: column;
+            }
+
+            .icon {
+                margin: 0 auto;
+            }
+
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
     </head>
+    
     
 <body>
 
