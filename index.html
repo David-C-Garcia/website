@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Garcia - Senior Research Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            scroll-behavior: smooth;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #1e272e;
+            width: 20%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 1rem 0.5rem;  /* Reduce padding to fit more content */
+            overflow-y: auto;  /* Allow scrolling if necessary */
+            color: white;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        header img {
+            width: 150px;  /* Reduce image size */
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;  /* Reduce margin to fit content */
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .social-links {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            padding: 0.5rem 0;
+            margin: 0.5rem 0;
+        }
+        .social-links a img {
+            width: 25px;
+            height: 25px;
+            margin-right: 0.5rem;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        nav ul li {
+            margin: 0.3rem 0;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 0.8rem 1.2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 4px;
+            text-align: center;
+            display: block;
+        }
+        nav ul li a:hover {
+            background-color: #718093;
+        }
+        main {
+            margin-left: 20%;
+            padding: 4rem;
+            width: 75%;
+        }
+        section {
+            padding: 15rem 5% 2rem 5%; /* Apply smaller padding at the bottom, 2rem here */
+            background-color: white;
+            margin: 1rem auto;  /* Move the biography section and its content up */
+            max-width: 2000px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            scroll-margin-top: 6rem;
+        }
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0,0,0,0.2);
+        }
+        section h2 {
+            color: #2f3542;
+            font-size: 2.5rem;
+            margin-top: -14rem;
+            text-align: center;
+            border-bottom: 3px solid #57606f;
+            padding-bottom: 1rem;
+        }
+        section p, section ul {
+            font-size: 1.2rem;
+            line-height: 2rem;
+            text-align: justify;
+        }
+        section ul {
+            padding-left: 0;
+        }
+        section ul li {
+            list-style: none;
+            margin-bottom: 0.8rem;
+        }
+        .icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            gap: 2.5rem;
+        }
+        .icon {
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .icon img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .icon a {
+            text-decoration: none;
+            color: #2f3542;
+            font-size: 1.4rem;
+            display: block;
+            margin-top: 1rem;
+        }
+        
+a.download-link {
+    margin: 0 1rem;
+    display: inline-flex; /* Flexbox for aligning items */
+    justify-content: center; /* Centering the text in the button */
+    align-items: center; /* Centering vertically */
+    text-align: center;
+    width: auto; /* You can specify a fixed width here if needed */
+    background-color: #1e272e;
+    color: white;
+    padding: 1rem 2rem; /* Adjust padding for larger button */
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+        a.download-link:hover {
+            background-color: #57606f;
+}
+
+    
+/* Modal container - hidden by default */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal content box */
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    text-align: center;
+    max-height: 80vh; /* Set maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-content ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    font-size: 1rem;  /* Adjust the font size */
+    line-height: 1.4rem;  /* Reduce line spacing */
+    text-align: left;
+}
+
+.modal-content li {
+    margin-bottom: 0.5rem;  /* Reduce spacing between list items */
+}
+
+</style>
+<script>
+function showOutreachModal() {
+    var modal = document.getElementById("outreachModal");
+    modal.style.display = "flex";  // Display the modal as a flexbox to center the content
+}
+
+function showAwardsModal() {
+    var modal = document.getElementById("awardsModal");
+    modal.style.display = "flex";  // Display the modal as a flexbox to center the content
+}
+
+function closeAwardsModal() {
+    var modal = document.getElementById("awardsModal");
+    modal.style.display = "none";
+}
+
+function showOutreachModal() {
+  var modal = document.getElementById("outreachModal");
+  modal.style.display = "flex";  // Display the modal as a flexbox to center the content
+}
+
+function showAwardsModal() {
+  var modal = document.getElementById("awardsModal");
+  modal.style.display = "flex";  // Display the modal as a flexbox to center the content
+}
+
+function closeAwardsModal() {
+  var modal = document.getElementById("awardsModal");
+  modal.style.display = "none";
+}
+
+
+function showMentoringModal() {
+    var modal = document.getElementById("mentoringModal");
+    modal.style.display = "flex";  // Display the modal as a flexbox to center the content
+}
+
+function closeMentoringModal() {
+    var modal = document.getElementById("mentoringModal");
+    modal.style.display = "none";
+}
+
+// Close Modal when X is clicked
+var closeOutreach = document.getElementsByClassName("close")[0];
+closeOutreach.onclick = function() {
+  var modal = document.getElementById("outreachModal");
+  modal.style.display = "none";
+}
+
+// Close Modal when clicking outside the modal content
+window.onclick = function(event) {
+  var modal = document.getElementById("outreachModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const links = document.querySelectorAll('nav ul li a');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(this.getAttribute('href'));
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 50,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>David Garcia</h1>
+    <img src="portrait_DG.png" alt="Profile Picture">
+    <h3 style="text-align: center; margin-top: 1rem; font-weight: normal;">Senior Research Scientist<br>DEVCOM CBC & Caltech</h3>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/david-garcia-172602ba/" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+            LinkedIn
+        </a>
+        <a href="https://scholar.google.com/citations?user=HTLatcMAAAAJ&hl=en" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg" alt="Google Scholar">
+            Google Scholar
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#biography">Biography</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="biography">
+        <h2>Biography</h2>
+        <p>Dr. David Garcia is a synthetic biologist and metabolic engineer working as Senior Research Scientist in the applied synthetic biology branch at 
+            <a href="https://www.cbc.devcom.army.mil/research/biosciences/" 
+            target="_blank" style="color: rgb(53, 53, 87); text-decoration: underline;">DEVCOM CBC</a> and is currently 
+            at <a href="https://murray.cds.caltech.edu/Main_Page" target="_blank" style="color: rgb(53, 53, 87); text-decoration: underline;">Caltech</a>  
+            under the guidance of Dr. Richard Murray. Prior to his current position he was a National Research Council Fellow at 
+            Caltech in the Murray lab developing cell-free biological circuitry and simplified organisms. He earned his doctorate in 
+            Mitchel J Doktycz’s laboratory at The University of Tennessee and Oak Ridge National Laboratory. During this time, he was awarded an NSF Graduate Research Fellowship to 
+            develop his thesis work focused on cell-free systems optimized for metabolic engineering and protein production. His current work is centered around the use of 
+            high-throughput methodologies to scale the production of cell-free biological sensors and cell-free bioproduction.</p>
+            <div style="display: flex; justify-content: flex-end; gap: 1rem; padding-right: rem; margin-top: 50px;">
+            <a href="David_Garcia_CV.pdf" class="download-link" download="David_Garcia_CV.pdf">Download CV</a>
+            <!-- Outreach Button -->
+
+<a href="#" class="download-link" onclick="showMentoringModal(); return false;">Mentoring</a>
+<a href="#" class="download-link" onclick="showOutreachModal(); return false;">Outreach</a>
+<a href="#" class="download-link" onclick="showAwardsModal(); return false;">Awards</a>
+
+<!-- Mentoring Modal Structure -->
+<div id="mentoringModal" class="modal" style="display: none; position: absolute; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); overflow-y: auto; justify-content: center; align-items: flex-start;">
+    <div class="modal-content" style="width: 100%; max-width: 1000px; padding: 50px; background-color: white; border-radius: 8px; margin: 40px auto;">
+      <span class="close" onclick="closeMentoringModal();" style="cursor: pointer; font-size: 18px; float: right;">&times;</span>
+      <h3 style="font-size: 1.2rem; margin-top: 0;">Mentoring Activities</h3>
+      <p>As an academic, I believe mentoring is the foundational cornerstone of our profession. Becoming a professor not only offers the opportunity create new knowledge, but the ability to 
+         share it with my students. My interest in academia is rooted in the strong mentorship I received both as a student and as a young researcher. The work of my mentors inspired me to develop 
+         a robust and hands-on approach rooted in developing a strong fundemental understanding of the basics of a project while encouraging students to take ownership of their work explore their own insights.  
+         During my career I’ve mentored four junior graduate students, 10 undergraduates, and many more on my iGEM team. My focus has always been on understanding each student's needs, providing hands-on 
+         guidance, and creating an eviroment where each student can thrive. As someone who loves to discuss science, I nurture my students’ interest and monitor their progress by encouraging frequent casual 
+         meetings in between more formalized presentations and reports. I have found that providing feedback on a student’s ability to describe their work either through talks or written reports allows me to 
+         effectively steer a project and provides them with a more holistic view of the mechanics and purpose of their work.</p>
+      <ul style="text-align: left; font-size: 1rem; line-height: 1.5rem; padding: 0; list-style: none;">
+        <li><strong>2024:</strong> Caltech Summer Undergraduate Fellow Mentor (SURF) (Max Janssen)</li>
+        <li><strong>2024:</strong> Caltech Diversification Initiative through Veteran Education(DIVE) (Hanna Kashchei) (Lisardo Duran Jr.)</li>
+        <li><strong>2023:</strong> DEVCOM CBC Army Educational Outreach Mentor (AEOP)(Alexandra Minor) </li>
+        <li><strong>2021:</strong> Caltech Summer Undergraduate Fellow Mentor (SURF) (Pranay Satya)</li>
+        <li><strong>2015-2018:</strong> IGEM Graduate Student Advisor and Founder:</strong> Responsible for assisting an undergraduate team of researchers design, perform, and present a novel work at the International Genetically Engineered Machine competition.</li>
+        <li><strong>2017:</strong>IGEM Giant Jamboree Judge:</strong> Judged student presentations and posters at IGEM conference.</li>
+      </ul>
+    </div>
+  </div>
+
+<!-- Awards Modal Structure -->
+<div id="awardsModal" class="modal" style="display: none; position: absolute; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); overflow-y: auto; justify-content: center; align-items: flex-start;">
+    <div class="modal-content" style="width: 100%; max-width: 1000px; padding: 50px; background-color: white; border-radius: 8px; margin: 40px auto;">
+        <span class="close" onclick="closePopup();" style="cursor: pointer; font-size: 18px; float: right;">&times;</span>
+        <h3 style="font-size: 1.2rem; margin-top: 0;">Fellowships, Awards, and Grants</h3>
+        <ul style="text-align: left; font-size: 1rem; line-height: 1.5rem; padding: 0; list-style: none;">
+        <li><strong>2022-Present:</strong> Grant: Principal Investigator: DEVCOM CBC Laboratory Independent Research Program ($405K)</li>
+        <li><strong>2022-Present:</strong> Grant: Principal Investigator: DEVCOM CBC Laboratory Independent Research Program ($405K)</li>
+        <li><strong>2021-Present:</strong> Fellowship: National Research Council Postdoctoral Fellowship</li>
+        <li><strong>2020:</strong> Award: ORNL (Biosciences Division) Distinguished Achievement Award</li>
+        <li><strong>2020:</strong> Award: UT Extraordinary Professional Promise Award</li>
+        <li><strong>2017-2020:</strong> Fellowship: National Science Foundation Graduate Research Fellowship</li>
+        <li><strong>2017:</strong> Award: Forum on Science Ethics and Policy Writing Competition 1st Place</li>
+        <li><strong>2016:</strong> Award: GEM Consortium Conference 2016: 1st Place Poster Award</li>
+        <li><strong>2016:</strong> Award: 2016 National Science Foundation Conference Travel Grant</li>
+        <li><strong>2015-16:</strong> Fellowship: Energy Science & Engineering, Bredesen Center for Interdisciplinary Research and Graduate Education Fellowship, University of Tennessee</li>
+        <li><strong>2015-16:</strong> Fellowship: GEM Consortium Graduate Fellowship</li>
+      </ul>
+    </div>
+</div>
+
+
+  
+<!-- Modal Structure -->
+<div id="outreachModal" class="modal" style="display: none; position: absolute; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); overflow-y: auto; justify-content: center; align-items: flex-start;">
+    <div class="modal-content" style="width: 100%; max-width: 1000px; padding: 50px; background-color: white; border-radius: 8px; margin: 40px auto;">
+      <span class="close" onclick="closeOutreachModal();" style="cursor: pointer; font-size: 18px; float: right;">&times;</span>
+      <h3 style="font-size: 1.2rem; margin-top: 0;">Outreach Activities</h3>
+      <ul style="text-align: left; font-size: 1rem; line-height: 1.5rem; padding: 0; list-style: none;">
+        <li><strong>Synthetic Biology Young Speaker Series Conference Organizing Committee:</strong> Assisting with organizing and funding the first iteration of the Synthetic Biology Young Speaker Series conference. (2023-Present)</li>
+        <li><strong>Synthetic Biology Gordon Research Seminar Elected Chair:</strong> Responsible for funding and organizing Gordon research seminar. (2019-2023)</li>
+        <li><strong>Daily Beacon Science Columnist:</strong> Produced a science and society column dedicated to helping bridge the divide between science and the public through discussions of scientific events and topics. (2015-2017)</li>
+      </ul>
+    </div>
+  </div>
+    </section>
+
+    <section id="research">
+        <h2>Research</h2>
+        <p>Engineerable biological systems hold immense promise in addressing a wide range of challenges, from combating biological and chemical threats to improving human health, 
+           food security, and material production. The complexity of even simple programs within the context of a cell inherently requires minimization into a modular engineerable context.
+           By understanding the fundamental components of complex biological systems and their interactions, we can create biological tools 
+           that operate with robustness, predictability, and precision. My work focuses on utilizing cell-free synthetic biology to conduct high-throughput characterization of these 
+           systems, aiming to both deepen our understanding of their core functions and enhance their potential for novel biological sensing and production mechanisms.</p>
+        <div class="icons">
+            <!-- Modal 1 Icon and Link -->
+            <div class="icon">
+                <a href="#" onclick="openModal('modal1'); return false;" style="text-align: center; display: inline-block;">
+                    <img src="research_area_icon_1.png" alt="Icon 1" style="display: block; margin: 0 auto;">
+                    <span style="display: block; white-space: nowrap; margin-top: 5px;">Biological Sensing</span>
+                </a>
+            </div>
+            <!-- Modal 1 Content -->
+            <div id="modal1" class="modal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
+                <div class="modal-content" style="background-color: white; padding: 2rem; text-align: center; border-radius: 8px; max-width: 1500px; width: 90%; height: auto;">
+                    <span class="close-modal" style="position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; cursor: pointer;">&times;</span>
+                    <img src="Biosensor Optimization.png" alt="Biological Sensing Image" style="width: 80%; height: auto; margin-bottom: 1rem; border-radius: 8px;">
+                    <p style="font-size: 1.5rem;">A. Graphic illustration of the DBTL cycle used to explore the combinatorial space of cell-free paper-ticket compositions. Initial tests of excipients and reagents defined an initial 
+                        DOE matrix that was tested and the resulting data used to define a predictive model for active and optimal reagent concentrations. B. Automated image analysis identifies, crops, detects, and trace hue change per well.
+                    C. Wax printed paper microfluidic device containing cell-free extract optimized using DBTL cycle,. Sample chamber contains nucleic acid cell-free biosensor. Custom software used to acquire traces of hue change </p>
+                </div>
+            </div>
+    
+            <!-- Modal 2 Icon and Link -->
+            <div class="icon">
+                <a href="#" onclick="openModal('modal2'); return false;" style="text-align: center; display: inline-block;">
+                    <img src="research_area_icon_2.png" alt="Icon 2" style="display: block; margin: 0 auto;">
+                    <span style="display: block; white-space: nowrap; margin-top: 5px;">Machine Learning Guided<br>Bioprototyping</span>
+                </a>
+            </div>
+            <!-- Modal 2 Content -->
+            <div id="modal2" class="modal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
+                <div class="modal-content" style="background-color: white; padding: 2rem; text-align: center; border-radius: 8px; max-width: 1500px; width: 90%; height: auto;">
+                    <span class="close-modal" style="position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; cursor: pointer;">&times;</span>
+                    <img src="ML_Materials_Graphic.png" alt="Machine Learning Guided Bioprototyping Image" style="width: 80%; height: auto; margin-bottom: 1rem; border-radius: 8px;">
+                    <p style="font-size: 1.5rem;">High-throughput computational and cell-free  synthetic biology techniques to rapidly test novel  substrates as building blocks for new melanin-like  materials. Data from protein 
+                        screening, molecular  simulations, and polymerization screens are aggregated  into ML models to make valuable predictions for new  substrates and catalysts..</p>
+                </div>
+            </div>
+    
+            <!-- Modal 3 Icon and Link -->
+            <div class="icon">
+                <a href="#" onclick="openModal('modal3'); return false;" style="text-align: center; display: inline-block;">
+                    <img src="research_area_icon_3.png" alt="Icon 3" style="display: block; margin: 0 auto;">
+                    <span style="display: block; white-space: nowrap; margin-top: 5px;">In Vitro Metabolic<br>Engineering</span>
+                </a>
+            </div>
+            <!-- Modal 3 Content -->
+            <div id="modal3" class="modal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
+                <div class="modal-content" style="background-color: white; padding: 2rem; text-align: center; border-radius: 8px; max-width: 1500px; width: 90%; height: auto;">
+                    <span class="close-modal" style="position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; cursor: pointer;">&times;</span>
+                    <img src="metabolism_graphic.png" alt="In Vitro Metabolic Engineering Image" style="width: 80%; height: auto; margin-bottom: 1rem; border-radius: 8px;">
+                    <p style="font-size: 1.5rem;">Simplified cell-free model. Products of glycolysis (red) and  shikimate pathway(green) are modified, 
+                        the effects rapidly  measured in real time, and used to inform model parameterization.</p>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; padding-right: rem; margin-top: 50px;">
+
+        <p> All together my lab is focused on unlocking the power of modular biological systems to create data-driven solutions and insights for biological production and function.
+            Our goal is to ultimately bring forward solutions for sustainable biomanufacturing, fieldable diagnostics, and personalized medicine.   
+        </p>
+    </section>
+    
+    <script>
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = 'flex';
+        }
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            var closeModalButtons = document.querySelectorAll('.close-modal');
+            closeModalButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    button.closest('.modal').style.display = 'none';
+                });
+            });
+    
+            window.addEventListener('click', function(event) {
+                var modals = document.querySelectorAll('.modal');
+                modals.forEach(function(modal) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+    <section id="publications">
+        <h2>Publications</h2>
+        <ul>
+            <p>For all full list of publications please visit my <a href="https://scholar.google.com/citations?user=HTLatcMAAAAJ&hl=en" target="_blank">Google Scholar</a>.</p>
+            <li><a href="https://academic.oup.com/synbio/article/3/1/ysy006/4995850" target="_blank">Garcia, D.C., Mohr, B., Dovgan, J. T., Hurst, G. B., Standaert, R. F., and Doktycz, M. J.  
+                Elucidating the potential of crude cell extracts for producing pyruvate from glucose. Synthetic Biology. (2018) SynBio</em>.</a></li>
+            <li><a href="https://www.sciencedirect.com/science/article/pii/S221403012100002X" target="_blank">Garcia, D.C.; Dinglasan, Jaime L.N.; Shrestha, H.; Abraham, P.E.; Hettich, R.L.; Doktycz, M.J.; 
+                A lysate proteome engineering strategy for enhancing cell-free metabolite production. (2020). <em>Metabolic engineering communications.</em>.</a></li>
+            <li><a href="https://journals.asm.org/doi/full/10.1128/aem.01185-18" target="_blank">Cecil, J. H.; Garcia, D. C.; Giannone, R. J.; Michener, J. K. 
+                Rapid, Parallel Identification of Catabolism Pathways of Lignin-Derived Aromatic Compounds in Novosphingobium Aromaticivorans. Appl. Environ. Microbiol. (2018) <em>Appl. Environ. Microbiol</em>.</a></li>
+        </ul>
+    </section>
+
+
+</script>
+
+</body>
+</html>
